@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A962D9FE-739C-445F-8006-0D8106A30C79}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>RemoteControlAPI</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\boost\boost_1_54_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="remotecontrol\action.cpp" />
+    <ClCompile Include="remotecontrol\application.cpp" />
+    <ClCompile Include="remotecontrol\clientconfig.cpp" />
+    <ClCompile Include="remotecontrol\command.cpp" />
+    <ClCompile Include="remotecontrol\networkservices.cpp" />
+    <ClCompile Include="remotecontrol\rc.cpp" />
+    <ClCompile Include="remotecontrol\rcapi.cpp" />
+    <ClCompile Include="remotecontrol\remotecontrol.cpp" />
+    <ClCompile Include="remotecontrol\remotecontrollers.cpp" />
+    <ClCompile Include="remotecontrol\sock.cpp" />
+    <ClCompile Include="remotecontrol\socket.cpp" />
+    <ClCompile Include="remotecontrol\tcp.cpp" />
+    <ClCompile Include="remotecontrol\tcpclient.cpp" />
+    <ClCompile Include="remotecontrol\type.cpp" />
+    <ClCompile Include="remotecontrol\udp.cpp" />
+    <ClCompile Include="remotecontrol\udpclient.cpp" />
+    <ClCompile Include="remotecontrol\virtualcontroller.cpp" />
+    <ClCompile Include="remotecontrol\xmlparser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="remotecontrol\action.h" />
+    <ClInclude Include="remotecontrol\any.h" />
+    <ClInclude Include="remotecontrol\application.h" />
+    <ClInclude Include="remotecontrol\clientconfig.h" />
+    <ClInclude Include="remotecontrol\command.h" />
+    <ClInclude Include="remotecontrol\networkservices.h" />
+    <ClInclude Include="remotecontrol\observed.h" />
+    <ClInclude Include="remotecontrol\rc.h" />
+    <ClInclude Include="remotecontrol\rcapi.h" />
+    <ClInclude Include="remotecontrol\rc_var.h" />
+    <ClInclude Include="remotecontrol\rc_var1.h" />
+    <ClInclude Include="remotecontrol\remotecontrol.h" />
+    <ClInclude Include="remotecontrol\remotecontrollers.h" />
+    <ClInclude Include="remotecontrol\sock.h" />
+    <ClInclude Include="remotecontrol\socket.h" />
+    <ClInclude Include="remotecontrol\tcp.h" />
+    <ClInclude Include="remotecontrol\tcpclient.h" />
+    <ClInclude Include="remotecontrol\type.h" />
+    <ClInclude Include="remotecontrol\udp.h" />
+    <ClInclude Include="remotecontrol\udpclient.h" />
+    <ClInclude Include="remotecontrol\virtualcontroller.h" />
+    <ClInclude Include="remotecontrol\xmlparser.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
