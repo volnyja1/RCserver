@@ -14,6 +14,337 @@ namespace rc{
 	typedef unsigned short   RCushort;
 	typedef unsigned int     RCuint;
 
+	enum DataTypes{
+		RC_INT,
+		RC_BOOL,
+		RC_FLOAT,
+		RC_DOUBLE,
+		RC_CHAR,
+		RC_STRING,
+		RC_TEXT,
+		RC_SCALAR,
+		RC_VECTOR,
+		RC_MATRIX,
+		RC_VOID,
+		RC_IMAGE
+	};
+
+	enum Comands{
+		QUIT,
+		EXIT,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
+		STEP_BACKWARD,
+		STEP_FORWARD,
+		JUMP,
+		SHOOT,
+		SIDESTEP,
+		SIDESTEP_LEFT,
+		SIDESTEP_RIGHT,
+		SPEED,
+		SLOW_DOWN,
+		SPEED_UP,
+		TRANSLATION,
+		ROTATION,
+		SCALE,
+		AXIS,
+		AXIS_X,
+		AXIS_Y,
+		AXIS_Z,
+		BEND,
+		STAND_UP,
+		STRAIGHTEN
+	};
+
+	enum Primitives{
+		COLOR,
+		BLACK,
+		WHITE,
+		RED,
+		GREEN,
+		BLUE,
+		YELLOW,
+		MAGENTA,
+		CYAN,
+		GREY,
+		DARKEN,
+		LIGHTER,
+		VERTEX,
+		EDGE,
+		FACE,
+		SCREEN,
+		CUBE,
+		CIRCLE,
+		SPHERE,
+		PRIMITIVE,
+		RC_2D,
+		RC_3D
+	};
+
+	const int DEFAULT_CONTEXT = 0;
+
+	enum Modules{
+		DEFAULT_MODULE,
+		BUTTON,
+		TOGGLE_BUTTON,
+		RADIO_BUTTON,
+		CHECKBOX,
+		CHECKEDTEXTVIEW,
+		SPINNER,
+		PROGRESSBAR,
+		SEEKBAR,
+		QUICKCONTACTBADGE,
+		RADIOGROUP,
+		RATINGBAR,
+		PLAINTEXT,
+		PERSONNAME,
+		PASSWORD,
+		NUMPASSWORD,
+		EMAIL,
+		PHONE,
+		ADDRESS,
+		MULTILINE,
+		TIME,
+		DATE,
+		NUMBER,
+		NUMBER_SIGNED,
+		NUMBER_DECIMAL,
+		AUTOCOMPLETETEXTVIEW,
+		MULTIAUTOCOMPLETETEXTVIEW,
+		//layouts
+		GRIDLAYOUT,
+		LINEARLAYOUT_V,
+		LINEARLAYOUT_H,
+		RELATIVELAYOUT,
+		FRAMELAYOUT,
+		INCLUDEOTHERLAYOUT,
+		FRAGMENT,
+		TABLELAYOUT,
+		TABLEROW,
+		SPACE,
+		// composite
+		LISTVIEW,
+		EXPANDABLELISTVIEW,
+		GRIDVIEW,
+		SCROLLVIEW,
+		SCROLLVIEW_H,
+		SEARCHVIEW,
+		SLIDINGDRAWER,
+		TABHOST,
+		TABWIDGET,
+		WEBVIEW,
+		// images & media
+		IMAGEVIEW,
+		IMAGEBUTTON,
+		GALLERY,
+		MEDIACONTROLLER,
+		VIDEOVIEW,
+		// time & date
+		TIMEPICKER,
+		DATEPICKER,
+		CALENDARVIEW,
+		CHRONOMETR,
+		ANALOGCLOCK,
+		DIGITALCLOCK,
+		// transitions
+		IMAGESWITCHER,
+		ADAPTERVIEWFLIPPER,
+		STACKVIEW,
+		TEXTSWITCHER,
+		VIEWANIMATOR,
+		VIEWFLIPPER,
+		VIEWSWITCHER,
+		// advanced
+		REQUESTFOCUS,
+		VIEW,
+		VIEWSTUP,
+		GESTUREOVERLAYVIEW,
+		TEXTUREVIEW,
+		SURFACEVIEW,
+		NUMBERPICKER,
+		ZOOMBUTTON,
+		ZOOMCONTROLS,
+		DIALERFILTER,
+		TWOLINELISTITEM,
+		ABSOLUTELAYOUT,
+		// other
+		TEXTCLOCK,
+
+		// sensors
+		ACCELEROMETER,
+		MAGNETIC_SENSOR,
+		DISTANCE_SENSOR,
+		THERMOMETER,
+		PRESSURE_SENSOR,
+		GPS_SENSOR,
+		LIGHT_SENSOR,
+		POSITION_SENSOR,
+		SOUND_SENSOR,
+		CAMERA_SENSOR,
+
+		// modules
+		ARROWS,
+		ARROW_UP,
+		ARROW_DOWN,
+		ARROW_RIGHT,
+		ARROW_LEFT,
+		KEYBOARD
+	};
+
+
+	// commands
+	/*const int UP								= 0x900D;
+	const int DOWN								= 0x900E;
+	const int LEFT								= 0x900F;
+	const int RIGHT								= 0x9010;
+	const int STEP_FORWARD							= 0x9011;
+	const int STEP_BACKWARD							= 0x9012;
+	const int JUMP								= 0x9013;
+	const int SHOOT								= 0x9014;
+	const int SIDESTEP_LEFT						= 0x9015;
+	const int SIDESTEP_RIGHT					= 0x9016;
+	const int SIDESTEP							= 0x9017;
+	const int SPEED								= 0x9018;
+	const int SLOW_DOWN							= 0x9018;
+	const int SPEED_UP							= 0x9018;
+	const int STEP								= 0x9018;
+	const int TRANSLATION						= 0x9018;
+	const int ROTATION							= 0x9018;
+	const int SCALE								= 0x9018;
+	const int AXIS								= 0x9018;
+	const int AXIS_X							= 0x9018;
+	const int AXIS_Y							= 0x9018;
+	const int AXIS_Z							= 0x9018;
+	const int BEND								= 0x9019;
+	const int STAND_UP							= 0x901A;
+	const int STRAIGHTEN						= 0x901B;
+	const int STOP								= 0x901C;
+	const int QUIT								= 0x901D;
+	const int EXIT								= 0x901E;
+	const int COLOR								= 0x901F;
+	const int BLACK								= 0x9020;
+	const int WHITE								= 0x9021;
+	const int BLUE								= 0x9022;
+	const int RED								= 0x9023;
+	const int GREEN								= 0x9024;
+	const int YELLOW							= 0x9025;
+	const int MAGENTA							= 0x9026;
+	const int CYAN								= 0x9027;
+	const int GREY								= 0x9028;
+	const int DARKEN							= 0x9029;
+	const int LIGHTEN							= 0x902A;
+	const int VERTEX							= 0x902B;
+	const int EDGE								= 0x902C;
+	const int FACE								= 0x902D;
+	const int SCREEN							= 0x902E;
+	const int CUBE								= 0x902F;
+	const int ROUND								= 0x9030;
+	const int RC_2D								= 0x9031;
+	const int RC_3D								= 0x9032;
+	const int SPHERE							= 0x9033;
+	const int PRIMITIVE							= 0x9034;*/
+	
+	// Android controllers
+	/*const int DEFAULT_MODULE					= 0x9035;
+	const int DEFAULT_CONTEXT					= 0;
+	const int BUTTON							= 0x9035;
+	const int TOGGLE_BUTTON						= 0x9036;
+	const int RADIO_BUTTON						= 0x9037;
+	const int CHECKBOX							= 0x9038;
+	
+	const int CHECKEDTEXTVIEW					= 0x9038;
+	const int SPINNER							= 0x9038;
+	const int PROGRESSBAR						= 43;
+	const int SEEKBAR							= 43;
+	const int QUICKCONTACTBADGE					= 43;
+	const int RADIOGROUP						= 43;
+	const int RATINGBAR							= 43;
+	// text fields
+	const int PLAINTEXT							= 43;
+	const int PERSONNAME						= 43;
+	const int PASSWORD							= 43;
+	const int NUMPASSWORD						= 43;
+	const int EMAIL								= 43;
+	const int PHONE								= 43;
+	const int ADDRESS							= 43;
+	const int MULTILINE							= 43;
+	const int TIME								= 43;
+	const int DATE								= 43;
+	const int NUMBER							= 43;
+	const int NUMBER_SIGNED						= 43;
+	const int NUMBER_DECIMAL					= 43;
+	const int AUTOCOMPLETETEXTVIEW				= 43;
+	const int MULTIAUTOCOMPLETETEXTVIEW			= 43;
+
+	// layouts
+	const int GRIDLAYOUT						= 43;
+	const int LINEARLAYOUT_V					= 43;
+	const int LINEARLAYOUT_H					= 43;
+	const int RELATIVELAYOUT					= 43;
+	const int FRAMELAYOUT						= 43;
+	const int INCLUDEOTHERLAYOUT				= 43;
+	const int FRAGMENT							= 43;
+	const int TABLELAYOUT						= 43;
+	const int TABLEROW							= 43;
+	const int SPACE								= 43;
+	// composite
+	const int LISTVIEW							= 43;
+	const int EXPANDABLELISTVIEW				= 43;
+	const int GRIDVIEW							= 43;
+	const int SCROLLVIEW						= 43;
+	const int SCROLLVIEW_H						= 43;
+	const int SEARCHVIEW						= 43;
+	const int SLIDINGDRAWER						= 43;
+	const int TABHOST							= 43;
+	const int TABWIDGET							= 43;
+	const int WEBVIEW							= 43;
+	// images & media
+	const int IMAGEVIEW							= 43;
+	const int IMAGEBUTTON						= 43;
+	const int GALLERY							= 43;
+	const int MEDIACONTROLLER					= 43;
+	const int VIDEOVIEW							= 43;
+	// time & date
+	const int TIMEPICKER						= 43;
+	const int DATEPICKER						= 43;
+	const int CALENDARVIEW						= 43;
+	const int CHRONOMETR						= 43;
+	const int ANALOGCLOCK						= 43;
+	const int DIGITALCLOCK						= 43;
+	// transitions
+	const int IMAGESWITCHER						= 43;
+	const int ADAPTERVIEWFLIPPER				= 43;
+	const int STACKVIEW							= 43;
+	const int TEXTSWITCHER						= 43;
+	const int VIEWANIMATOR						= 43;
+	const int VIEWFLIPPER						= 43;
+	const int VIEWSWITCHER						= 43;
+	// advanced
+	const int REQUESTFOCUS						= 43;
+	const int VIEW								= 43;
+	const int VIEWSTUP							= 43;
+	const int GESTUREOVERLAYVIEW				= 43;
+	const int TEXTUREVIEW						= 43;
+	const int SURFACEVIEW						= 43;
+	const int NUMBERPICKER						= 43;
+	const int ZOOMBUTTON						= 43;
+	const int ZOOMCONTROLS						= 43;
+	const int DIALERFILTER						= 43;
+	const int TWOLINELISTITEM					= 43;
+	const int ABSOLUTELAYOUT					= 43;
+	// other
+	const int TEXTCLOCK							= 43;
+
+	// sensors
+	const int ACCELEROMETER						= 43;
+	const int MAGNETIC_SENSOR					= 43;
+	const int DISTANCE_SENSOR					= 43;
+
+	// modules
+	const int ARROWS							= 43;*/
+
 
 	// *********************************************************** //
 	// taken from gl.h //
@@ -245,7 +576,7 @@ namespace rc{
 	const int RC_UNSIGNED_BYTE                  = 0x1401;
 	const int RC_SHORT                          = 0x1402;
 	const int RC_UNSIGNED_SHORT                 = 0x1403;
-	const int RC_FLOAT                          = 0x1406;
+	//const int RC_FLOAT                          = 0x1406;
 	const int RC_FIXED                          = 0x140C;
 
 	// LogicOp //
@@ -433,173 +764,6 @@ namespace rc{
 
 	const int RC_DOT3_RGB                       = 0x86AE;
 	const int RC_DOT3_RGBA                      = 0x86AF;
-
-	// Remote control definitions //
-	// data types
-	const int RC_INT							= 0x9002;
-	const int BOOL								= 0x9003;
-	const int FLOAT								= 0x9004;
-	const int STRING							= 0x9005;
-	const int DOUBLE							= 0x9006;
-	const int CHAR								= 0x900C;
-	
-	// abstract data types
-	const int SCALAR							= 0x9007;
-	const int VECTOR							= 0x9008;
-	const int TEXT								= 0x9009;
-	const int MATRIX							= 0x900A;
-	const int IMAGE								= 0x900B;
-
-	// commands
-	const int UP								= 0x900D;
-	const int DOWN								= 0x900E;
-	const int LEFT								= 0x900F;
-	const int RIGHT								= 0x9010;
-	const int STEP_FORWARD							= 0x9011;
-	const int STEP_BACKWARD							= 0x9012;
-	const int JUMP								= 0x9013;
-	const int SHOOT								= 0x9014;
-	const int SIDESTEP_LEFT						= 0x9015;
-	const int SIDESTEP_RIGHT					= 0x9016;
-	const int SIDESTEP							= 0x9017;
-	const int SPEED								= 0x9018;
-	const int SLOW_DOWN							= 0x9018;
-	const int SPEED_UP							= 0x9018;
-	const int STEP								= 0x9018;
-	const int TRANSLATION						= 0x9018;
-	const int ROTATION							= 0x9018;
-	const int SCALE								= 0x9018;
-	const int AXIS								= 0x9018;
-	const int AXIS_X							= 0x9018;
-	const int AXIS_Y							= 0x9018;
-	const int AXIS_Z							= 0x9018;
-	const int BEND								= 0x9019;
-	const int STAND_UP							= 0x901A;
-	const int STRAIGHTEN						= 0x901B;
-	const int STOP								= 0x901C;
-	const int QUIT								= 0x901D;
-	const int EXIT								= 0x901E;
-	const int COLOR								= 0x901F;
-	const int BLACK								= 0x9020;
-	const int WHITE								= 0x9021;
-	const int BLUE								= 0x9022;
-	const int RED								= 0x9023;
-	const int GREEN								= 0x9024;
-	const int YELLOW							= 0x9025;
-	const int MAGENTA							= 0x9026;
-	const int CYAN								= 0x9027;
-	const int GREY								= 0x9028;
-	const int DARKEN							= 0x9029;
-	const int LIGHTEN							= 0x902A;
-	const int VERTEX							= 0x902B;
-	const int EDGE								= 0x902C;
-	const int FACE								= 0x902D;
-	const int SCREEN							= 0x902E;
-	const int CUBE								= 0x902F;
-	const int ROUND								= 0x9030;
-	const int RC_2D								= 0x9031;
-	const int RC_3D								= 0x9032;
-	const int SPHERE							= 0x9033;
-	const int PRIMITIVE							= 0x9034;
-	
-	// Android controllers
-	const int DEFAULT_MODULE					= 0x9035;
-	const int DEFAULT_CONTEXT					= 0;
-	const int BUTTON							= 0x9035;
-	const int TOGGLE_BUTTON						= 0x9036;
-	const int RADIO_BUTTON						= 0x9037;
-	const int CHECKBOX							= 0x9038;
-	
-	const int CHECKEDTEXTVIEW					= 0x9038;
-	const int SPINNER							= 0x9038;
-	const int PROGRESSBAR						= 43;
-	const int SEEKBAR							= 43;
-	const int QUICKCONTACTBADGE					= 43;
-	const int RADIOGROUP						= 43;
-	const int RATINGBAR							= 43;
-	// text fields
-	const int PLAINTEXT							= 43;
-	const int PERSONNAME						= 43;
-	const int PASSWORD							= 43;
-	const int NUMPASSWORD						= 43;
-	const int EMAIL								= 43;
-	const int PHONE								= 43;
-	const int ADDRESS							= 43;
-	const int MULTILINE							= 43;
-	const int TIME								= 43;
-	const int DATE								= 43;
-	const int NUMBER							= 43;
-	const int NUMBER_SIGNED						= 43;
-	const int NUMBER_DECIMAL					= 43;
-	const int AUTOCOMPLETETEXTVIEW				= 43;
-	const int MULTIAUTOCOMPLETETEXTVIEW			= 43;
-
-	// layouts
-	const int GRIDLAYOUT						= 43;
-	const int LINEARLAYOUT_V					= 43;
-	const int LINEARLAYOUT_H					= 43;
-	const int RELATIVELAYOUT					= 43;
-	const int FRAMELAYOUT						= 43;
-	const int INCLUDEOTHERLAYOUT				= 43;
-	const int FRAGMENT							= 43;
-	const int TABLELAYOUT						= 43;
-	const int TABLEROW							= 43;
-	const int SPACE								= 43;
-	// composite
-	const int LISTVIEW							= 43;
-	const int EXPANDABLELISTVIEW				= 43;
-	const int GRIDVIEW							= 43;
-	const int SCROLLVIEW						= 43;
-	const int SCROLLVIEW_H						= 43;
-	const int SEARCHVIEW						= 43;
-	const int SLIDINGDRAWER						= 43;
-	const int TABHOST							= 43;
-	const int TABWIDGET							= 43;
-	const int WEBVIEW							= 43;
-	// images & media
-	const int IMAGEVIEW							= 43;
-	const int IMAGEBUTTON						= 43;
-	const int GALLERY							= 43;
-	const int MEDIACONTROLLER					= 43;
-	const int VIDEOVIEW							= 43;
-	// time & date
-	const int TIMEPICKER						= 43;
-	const int DATEPICKER						= 43;
-	const int CALENDARVIEW						= 43;
-	const int CHRONOMETR						= 43;
-	const int ANALOGCLOCK						= 43;
-	const int DIGITALCLOCK						= 43;
-	// transitions
-	const int IMAGESWITCHER						= 43;
-	const int ADAPTERVIEWFLIPPER				= 43;
-	const int STACKVIEW							= 43;
-	const int TEXTSWITCHER						= 43;
-	const int VIEWANIMATOR						= 43;
-	const int VIEWFLIPPER						= 43;
-	const int VIEWSWITCHER						= 43;
-	// advanced
-	const int REQUESTFOCUS						= 43;
-	const int VIEW								= 43;
-	const int VIEWSTUP							= 43;
-	const int GESTUREOVERLAYVIEW				= 43;
-	const int TEXTUREVIEW						= 43;
-	const int SURFACEVIEW						= 43;
-	const int NUMBERPICKER						= 43;
-	const int ZOOMBUTTON						= 43;
-	const int ZOOMCONTROLS						= 43;
-	const int DIALERFILTER						= 43;
-	const int TWOLINELISTITEM					= 43;
-	const int ABSOLUTELAYOUT					= 43;
-	// other
-	const int TEXTCLOCK							= 43;
-
-	// sensors
-	const int ACCELEROMETER						= 43;
-	const int MAGNETIC_SENSOR					= 43;
-	const int DISTANCE_SENSOR					= 43;
-
-	// modules
-	const int ARROWS							= 43;
 }
 
 #endif // RC_VARS_H //

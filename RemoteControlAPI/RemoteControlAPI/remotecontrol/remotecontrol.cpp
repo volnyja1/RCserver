@@ -1,6 +1,7 @@
 #include "remotecontrol.h"
 #include <sstream>
 #include <iostream>
+#include "rc_var.h"
 
 namespace rc{
 	
@@ -30,7 +31,7 @@ namespace rc{
 				std::cout << "> RC: close\n";
 				close();
 			} else if(commandsFromApp->front().getType()==START){
-				std::cout << "> RC: close\n";
+				std::cout << "> RC: start\n";
 				run();
 			} else if(commandsFromApp->front().getType()==REGISTER_ACTION){
 				std::cout << "> RC: register action\n";
@@ -55,6 +56,10 @@ namespace rc{
 					app.setState(AppState::RUNNING);
 				}
 				app.setContext(commandsFromApp->front().getContext());
+				xml::XMLMessage m;
+				m.setMessageType("other");
+				m.setData("<type>context</type><content>"+std::to_string(commandsFromApp->front().getContext())+"</content>");
+				netServices.sendBroadcast(clients.getAllClientIds(),m);
 			} else if(commandsFromApp->front().getType()==ERROR){
 				std::cout << "> RC: error\n";
 			} else if(commandsFromApp->front().getType()==OTHER){
@@ -144,13 +149,27 @@ namespace rc{
 						int context = app.getContext();
 						int valueType = app.getValueType(m.getPortInt());
 						boost::any f = vrc.getAction(id,0,context,m.getPortInt());
+						/*if(valueType == RC_INT){
+
+						} else if(valueType == RC_FLOAT){
+
+						} else if(valueType == RC_DOUBLE){
+
+						} else if(valueType == RC_MATRIX){
+
+						} else if(valueType == RC_SCALAR){
+
+						} else if(valueType == RC_VECTOR){
+
+						}*/
 
 						// vytvor Command
 						Command c(EXECUTE);
 						c.setContent(f);
 						c.setParams("");
-						if(m.getPortInt() == 2)
+						if(m.getPortInt() == 2){
 							c.setParams("1");
+						}
 						commandsFromRC->push(c);
 						netServices.sendBroadcast(clients.getAllClientIds(), m1);
 					} else{

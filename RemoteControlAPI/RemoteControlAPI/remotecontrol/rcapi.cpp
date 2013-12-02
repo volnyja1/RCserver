@@ -39,7 +39,7 @@ namespace rc{
 					commandsFromRC.front().execute();
 				}
 				if(commandsFromRC.front().getParams().compare("1")==0){
-					commandsFromRC.front().execute();
+					commandsFromRC.front().execute(42);
 				}
 				commandsFromRC.pop();
 			} else{

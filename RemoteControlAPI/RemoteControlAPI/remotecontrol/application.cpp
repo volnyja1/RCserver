@@ -27,7 +27,7 @@ namespace rc{
 
 	Application::Application(){
 		//std::cout << "App created" << std::endl;
-		context = 0;
+		context = DEFAULT_CONTEXT;
 		state = AppState::CONFIGURING;
 	}
 

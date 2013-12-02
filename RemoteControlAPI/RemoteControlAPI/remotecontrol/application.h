@@ -3,6 +3,7 @@
 
 #include <map>
 //#include "xmlparser.h"
+#include "rc_var.h"
 
 namespace rc{
 

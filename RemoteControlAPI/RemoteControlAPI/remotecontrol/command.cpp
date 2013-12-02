@@ -103,7 +103,6 @@ namespace rc{
 		}
 		try{
 			std::function<void()> f = boost::any_cast<std::function<void()>>(content);
-			std::cout<<"std::function\n";
 		} catch (...){
 
 		}

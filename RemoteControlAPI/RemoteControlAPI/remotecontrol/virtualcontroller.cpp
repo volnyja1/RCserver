@@ -13,6 +13,7 @@ namespace rc{
 	}
 
 	void VControl::registerAction(boost::any _f, int _context, int _port){
+		//std::cout << "action set to port: " << _port << "\n";
 		actions[_context][_port] = _f;
 	}
 
