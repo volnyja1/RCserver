@@ -95,64 +95,70 @@ namespace rc{
 		return params;
 	}
 
-	void Command::execute(){
+	int Command::getValueType(){
+		return valueType;
+	}
+
+	void Command::setValueType(int _valueType){
+		valueType = _valueType;
+	}
+
+	int Command::execute(){
 		try{
-			std::function<void()> f = boost::any_cast<void(*)()>(content);
-			f.operator()();
+			return boost::any_cast<int(*)()>(content)();
 		} catch (...){
 		}
 		try{
-			std::function<void()> f = boost::any_cast<std::function<void()>>(content);
+			return boost::any_cast<std::function<int()>>(content)();
+		} catch (...){
+		}
+	}
+
+	int Command::execute(int arg){
+		try{
+			return boost::any_cast<int(*)(int)>(content)(arg);
+		} catch (...){
+		}
+		try{
+			return boost::any_cast<std::function<int(int)>>(content)(arg);
 		} catch (...){
 
 		}
 	}
 
-	void Command::execute(int arg){
+	int Command::execute(float arg){
 		try{
-			boost::any_cast<void(*)(int)>(content)(arg);
+			return boost::any_cast<int(*)(float)>(content)(arg);
 		} catch (...){
 		}
 		try{
-			boost::any_cast<std::function<void(int)>>(content)(arg);
-		} catch (...){
-
-		}
-	}
-
-	void Command::execute(float arg){
-		try{
-			boost::any_cast<void(*)(float)>(content)(arg);
-		} catch (...){
-		}
-		try{
-			boost::any_cast<std::function<void(float)>>(content)(arg);
+			return boost::any_cast<std::function<int(float)>>(content)(arg);
 		} catch (...){
 
 		}
 	}
 
-	void Command::execute(double arg){
+	int Command::execute(double arg){
 		try{
-			boost::any_cast<void(*)(double)>(content)(arg);
+			return boost::any_cast<int(*)(double)>(content)(arg);
 		} catch (...){
 
 		}
 		try{
-			boost::any_cast<std::function<void(double)>>(content)(arg);
+			return boost::any_cast<std::function<int(double)>>(content)(arg);
 		} catch (...){
 
 		}
 	}
 
-	void Command::execute(std::string arg){
+	int Command::execute(std::string arg){
 		try{
-			boost::any_cast<void(*)(std::string)>(content)(arg);
+			return boost::any_cast<int(*)(std::string)>(content)(arg);
 		} catch (...){
 
 		}
 		try{
-			boost::any_cast<std::function<void(std::string)>>(content)(arg);
+			return boost::any_cast<std::function<int(std::string)>>(content)(arg);
 		} catch (...){
 
 		}

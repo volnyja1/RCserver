@@ -49,11 +49,11 @@ namespace rc{
 		CommandType getType();
 		boost::any getContent();
 		void setContent(boost::any _content);
-		void execute();
-		void execute(int arg);
-		void execute(float arg);
-		void execute(double arg);
-		void execute(std::string arg);
+		int execute();
+		int execute(int arg);
+		int execute(float arg);
+		int execute(double arg);
+		int execute(std::string arg);
 		int getActionType();
 		int getPrimitiveType();
 		int getContext();
@@ -61,10 +61,13 @@ namespace rc{
 		int getPreferedModule();
 		void setParams(std::string _params);
 		std::string getParams();
+		int getValueType();
+		void setValueType(int _valueType);
 	private:
 		CommandType type;
 		boost::any content;
 		int actionType, primitiveType, preferedModule, context;
+		int valueType;
 		std::string name, params;
 	};
 }

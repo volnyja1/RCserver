@@ -139,37 +139,19 @@ namespace rc{
 						m1.setId(m.getId());
 						m1.setPort(m.getPort());
 						m1.setMessageType("data");
-						
-						//TODO setData
-						////////////////////////////////
-						////m1.setData(m.getData());////
-						////////////////////////////////
 
-						// vytahni argumenty z dat
+						// get arguments from message
+						std::string data = m.getData();
+						m1.setData(data);
 						int context = app.getContext();
 						int valueType = app.getValueType(m.getPortInt());
 						boost::any f = vrc.getAction(id,0,context,m.getPortInt());
-						/*if(valueType == RC_INT){
-
-						} else if(valueType == RC_FLOAT){
-
-						} else if(valueType == RC_DOUBLE){
-
-						} else if(valueType == RC_MATRIX){
-
-						} else if(valueType == RC_SCALAR){
-
-						} else if(valueType == RC_VECTOR){
-
-						}*/
-
-						// vytvor Command
+						
+						// create Command
 						Command c(EXECUTE);
 						c.setContent(f);
-						c.setParams("");
-						if(m.getPortInt() == 2){
-							c.setParams("1");
-						}
+						c.setParams(data);
+						c.setValueType(valueType);
 						commandsFromRC->push(c);
 						netServices.sendBroadcast(clients.getAllClientIds(), m1);
 					} else{
