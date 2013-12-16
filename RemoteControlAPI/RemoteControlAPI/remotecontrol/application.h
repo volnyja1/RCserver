@@ -37,12 +37,18 @@ namespace rc{
 		void setState(AppState _state);
 		AppState getState();
 		int getValueType(int port);
+		void setName(std::string _name);
+		std::string getName();
+		void setVersion(std::string _version);
+		std::string getVersion();
+		void setAppId(std::string _appId);
+		std::string getAppId();
 	private:
 		void createAppConfig();
 		int context;
 		// map<context,map<port,conf>>
 		std::map<int,std::map<int,AppConf>> appControl;
-		std::string appConfig;
+		std::string appConfig, name, appId, version;
 		AppState state;
 	};
 }

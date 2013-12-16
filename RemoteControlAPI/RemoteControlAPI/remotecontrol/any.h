@@ -1,5 +1,18 @@
+#ifndef ANY_H
+#define ANY_H
 
 namespace rc{
+
+	template<class T> class tpl
+	{
+		T content;
+	public:
+		tpl(const T& value) : content(value) {}
+		operator T() const
+		{
+			return content;
+		}
+	};
 
 	class any
 	{
@@ -47,3 +60,5 @@ namespace rc{
 		placeholder* content;
 	};
 };
+
+#endif;

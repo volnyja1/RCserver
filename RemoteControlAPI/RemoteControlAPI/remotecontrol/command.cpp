@@ -109,7 +109,7 @@ namespace rc{
 		} catch (...){
 		}
 		try{
-			return boost::any_cast<std::function<int()>>(content)();
+			return boost::any_cast<std::function<int __cdecl()>>(content)();
 		} catch (...){
 		}
 	}
@@ -120,7 +120,7 @@ namespace rc{
 		} catch (...){
 		}
 		try{
-			return boost::any_cast<std::function<int(int)>>(content)(arg);
+			return boost::any_cast<std::function<int __cdecl(int)>>(content)(arg);
 		} catch (...){
 
 		}
@@ -132,7 +132,7 @@ namespace rc{
 		} catch (...){
 		}
 		try{
-			return boost::any_cast<std::function<int(float)>>(content)(arg);
+			return boost::any_cast<std::function<int __cdecl(float)>>(content)(arg);
 		} catch (...){
 
 		}
@@ -145,7 +145,7 @@ namespace rc{
 
 		}
 		try{
-			return boost::any_cast<std::function<int(double)>>(content)(arg);
+			return boost::any_cast<std::function<int __cdecl(double)>>(content)(arg);
 		} catch (...){
 
 		}
@@ -158,7 +158,7 @@ namespace rc{
 
 		}
 		try{
-			return boost::any_cast<std::function<int(std::string)>>(content)(arg);
+			return boost::any_cast<std::function<int __cdecl(std::string)>>(content)(arg);
 		} catch (...){
 
 		}

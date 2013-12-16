@@ -15,6 +15,7 @@ namespace rc{
 	typedef unsigned int     RCuint;
 
 	enum DataTypes{
+		RC_VOID,
 		RC_INT,
 		RC_BOOL,
 		RC_FLOAT,
@@ -25,8 +26,9 @@ namespace rc{
 		RC_SCALAR,
 		RC_VECTOR,
 		RC_MATRIX,
-		RC_VOID,
-		RC_IMAGE
+		RC_IMAGE,
+		RC_LOGICAL,
+		RC_FIELD
 	};
 
 	enum Comands{
@@ -190,7 +192,12 @@ namespace rc{
 		ARROW_DOWN,
 		ARROW_RIGHT,
 		ARROW_LEFT,
-		KEYBOARD
+		KEYBOARD,
+		JOYSTICK,
+		JOYSTICK_UP,
+		JOYSTICK_DOWN,
+		JOYSTIXK_LEFT,
+		JOYSTICK_RIGHT
 	};
 
 

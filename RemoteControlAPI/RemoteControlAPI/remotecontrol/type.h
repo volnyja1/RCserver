@@ -3,63 +3,70 @@
 
 #include <iostream>
 #include <vector>
+#include "rc_var.h"
+#include "any.h"
 
 namespace rc{
 	class Type {
-	private:
-		struct base {
-			virtual ~base() {}
-			virtual base* clone() const = 0;
-		};
-		template <typename T>
-		struct data: base {
-			data(T const& value): value_(value) {}
-			base* clone() const { return new data<T>(*this); }
-			T value_;
-		};
-		base* ptr_;
 	public:
-		template <typename T> Type(T const& value): ptr_(new data<T>(value)) {}
-		Type(Type const& other): ptr_(other.ptr_->clone()) {}
-		Type& operator= (Type const& other) {
-			Type(other).swap(*this);
-			return *this;
-		}
-		~Type() { delete this->ptr_; }
-		void swap(Type& other) { std::swap(this->ptr_, other.ptr_); }
-
-		template <typename T>
-		T& get() {
-			return dynamic_cast<data<T>&>(*this->ptr_).value_;
-		}
+		Type();
+		~Type();
+		void getContentFromData(std::string data);
+		void setValueType(int valueType);
+	protected:
+		int valueType;
 	};
 
-	class Scalar{
-
+	class Scalar:public Type{
+	public:
+		Scalar(){valueType = RC_SCALAR;}
+		~Scalar();
+	private:
+		int content;
 	};
 
-	class Vector{
-
+	class Vector:public Type{
+	public:
+		Vector(){valueType = RC_VECTOR;}
+		~Vector();
+	private:
+		any x, y, z;
 	};
 
-	class Matrix{
-
+	class Matrix:public Type{
+	public:
+		Matrix(){valueType = RC_MATRIX;}
+		~Matrix();
+	private:
+		any a00, a01, a02, a10, a11, a12, a20, a21, a22;
 	};
 
-	class Image{
-
+	class Image:public Type{
+	public:
+		Image(){valueType = RC_IMAGE;}
+		~Image();
+	private:
 	};
 
-	class Text{
-
+	class Text:public Type{
+	public:
+		Text(){valueType = RC_TEXT;}
+		~Text();
+	private:
 	};
 
-	class Logical{
-
+	class Logical:public Type{
+	public:
+		Logical(){valueType = RC_LOGICAL;}
+		~Logical();
+	private:
 	};
 
-	class Field{
-
+	class Field:public Type{
+	public:
+		Field(){valueType = RC_FIELD;}
+		~Field();
+	private:
 	};
 }
 

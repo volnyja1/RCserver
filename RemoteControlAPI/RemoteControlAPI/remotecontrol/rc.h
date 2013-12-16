@@ -21,6 +21,38 @@ namespace rc{
 	*
 	*
 	*/
+	//void registerFunction(std::function<int __cdecl(any)> f, int valueType);
+
+	/**
+	*
+	*
+	*/
+	//void registerFunction(std::function<int __cdecl(any)> f, int valueType, std::string name, int preferedModule);
+
+	/**
+	*
+	*
+	*/
+	//void registerFunction(std::function<int __cdecl(any)> f, int valueType, std::string name, int preferedModule, int context);
+
+	/**
+	*
+	*
+	*/
+	//void registerDefaultAction(int actionType, std::function<int __cdecl(any)> f);
+
+	/**
+	*
+	*
+	*/
+	//void registerDefaultAction(int actionType, std::function<int __cdecl(any)> f, int context);
+
+
+
+	/**
+	*
+	*
+	*/
 	void registerFunction(boost::any f, int valueType);
 
 	/**

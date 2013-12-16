@@ -172,13 +172,14 @@ namespace rc{
 				if(app.getState() == AppState::RUNNING){
 					xml::XMLMessage m1;
 					m1.setMessageType("hello");
-					m1.setData("running");
+					std::string mess = "<id>"+app.getAppId()+"<id><version>"+app.getVersion()+"</version><name>"+app.getName()+"</name>";
+					m1.setData(mess);
 					m1.setId(id);
 					messagesToNetwork.push(m1);
 				} else{
 					xml::XMLMessage m1;
 					m1.setMessageType("hello");
-					m1.setData("not running");
+					m1.setData("0");
 					m1.setId(id);
 					messagesToNetwork.push(m1);
 				}

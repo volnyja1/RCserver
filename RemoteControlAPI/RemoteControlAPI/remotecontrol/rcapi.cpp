@@ -1,7 +1,7 @@
 #include "rcapi.h"
 #include <iostream>
 #include <sstream>
-#include "type.h"
+//#include "type.h"
 
 namespace rc{
 	RemoteControlAPI &RemoteControlAPI::getInstance()

@@ -25,6 +25,31 @@ namespace rc{
 		}
 	}
 
+	/*void registerFunction(std::function<int __cdecl(any)> f, int valueType){
+		std::string name = "action_name_" + defaultActionName++;
+		rcAPI->registerAction(f, valueType, name, rc::DEFAULT_MODULE, rc::DEFAULT_CONTEXT);
+	}
+
+	void registerFunction(std::function<int __cdecl(any)> f, int valueType, std::string name){
+		rcAPI->registerAction(f, valueType, name, rc::DEFAULT_MODULE, rc::DEFAULT_CONTEXT);
+	}
+
+	void registerFunction(std::function<int __cdecl(any)> f, int valueType, std::string name, int preferedModule){
+		rcAPI->registerAction(f, valueType, name, preferedModule, rc::DEFAULT_CONTEXT);
+	}
+
+	void registerFunction(std::function<int __cdecl(any)> f, int valueType, std::string name, int preferedModule, int context){
+		rcAPI->registerAction(f, valueType, name, preferedModule, context);
+	}
+
+	void registerDefaultAction(int actionType, std::function<int __cdecl(any)> f){
+		rcAPI->registerDefaultAction(f, actionType, rc::DEFAULT_CONTEXT);
+	}
+
+	void registerDefaultAction(int actionType, std::function<int __cdecl(any)> f, int context){
+		rcAPI->registerDefaultAction(f, actionType, context);
+	}*/
+
 	void registerFunction(boost::any f, int valueType){
 		std::string name = "action_name_" + defaultActionName++;
 		rcAPI->registerAction(f, valueType, name, rc::DEFAULT_MODULE, rc::DEFAULT_CONTEXT);

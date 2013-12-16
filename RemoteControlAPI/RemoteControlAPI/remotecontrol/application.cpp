@@ -29,6 +29,9 @@ namespace rc{
 		//std::cout << "App created" << std::endl;
 		context = DEFAULT_CONTEXT;
 		state = AppState::CONFIGURING;
+		name = "Multi-projection application";
+		appId = "snowman";
+		version = "1.0";
 	}
 
 	Application::~Application(){
@@ -41,6 +44,30 @@ namespace rc{
 
 	int Application::getContext(){
 		return context;
+	}
+
+	std::string Application::getName(){
+		return name;
+	}
+
+	void Application::setName(std::string _name){
+		name = _name;
+	}
+
+	std::string Application::getAppId(){
+		return appId;
+	}
+
+	void Application::setAppId(std::string _appId){
+		appId = _appId;
+	}
+
+	std::string Application::getVersion(){
+		return version;
+	}
+
+	void Application::setVersion(std::string _version){
+		version = _version;
 	}
 
 	void Application::setState(AppState _state){
