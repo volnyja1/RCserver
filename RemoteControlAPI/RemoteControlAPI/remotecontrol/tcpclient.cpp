@@ -117,9 +117,18 @@ namespace netsvc{
 						mess.setData("Error: Port number not set");
 					}
 				}
+				//std::cout << s << "\n";
 				messagesToApp->push(mess);
 			}
 		} catch(...){
+		}
+	}
+
+	void TCPClient::run(){
+		while(!clientStop){
+			handleAppEvents();
+			handleClientEvents();
+			std::this_thread::sleep_for(std::chrono::milliseconds(5));
 		}
 	}
 
@@ -144,11 +153,10 @@ namespace netsvc{
 			std::cerr << "Unable to set non-blocking" << std::endl;
 		}
 
-		while(!clientStop){
-			handleAppEvents();
-			handleClientEvents();
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		}
+		/*std::thread cl(&TCPClient::run, this);
+		cl.detach();*/
+
+		run();
 	}
 
 	void TCPClient::close(){

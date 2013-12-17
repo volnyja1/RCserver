@@ -143,6 +143,7 @@ namespace rc{
 						// get arguments from message
 						std::string data = m.getData();
 						m1.setData(data);
+						//std::cout << data << "\n";
 						int context = app.getContext();
 						int valueType = app.getValueType(m.getPortInt());
 						boost::any f = vrc.getAction(id,0,context,m.getPortInt());

@@ -39,12 +39,14 @@ namespace netsvc{
 			while(true){
 				TCPSocket *clntSock = servSock.accept();
 				std::cout << ">> novy klient\n";
+				//startClient(clntSock);
 				std::thread client(&tcp::startClient, this, clntSock);
 				client.detach();
-			}
-	  } catch (SocketException &e) {
-		std::cerr << e.what() << std::endl;
-		exit(1);
-	  }
+				//std::this_thread::sleep_for(std::chrono::milliseconds(200));
+				}
+		} catch (SocketException &e) {
+			std::cerr << e.what() << std::endl;
+			exit(1);
+		}
 	}
 };

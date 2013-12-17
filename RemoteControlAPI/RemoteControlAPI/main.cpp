@@ -20,11 +20,14 @@ int main (){
 	////rc::assign(&a, "button 1", rc::RC_INT, rc::ACCELEROMETER);
 
 	////rc::registerFunction([]{std::cout << "hello\n";}, rc::RC_FLOAT, "arrow up", rc::ARROWS);
-	rc::registerFunction(&ahoj, rc::RC_VOID, "arrow up", rc::ARROW_UP);
+	rc::registerFunction(&ahoj, rc::RC_VOID, "arrow up", rc::JOYSTICK_UP);
+	rc::registerFunction(&ahoj, rc::RC_VOID, "arrow up", rc::JOYSTICK_DOWN);
+	rc::registerFunction(&ahoj, rc::RC_VOID, "arrow up", rc::JOYSTICK_RIGHT);
+	rc::registerFunction(&ahoj, rc::RC_VOID, "arrow up", rc::JOYSTIXK_LEFT);
 	////rc::registerFunction(&ahoj, rc::RC_FLOAT, "arrow up", rc::ARROWS);
 	////rc::registerFunction(&ahoj, rc::RC_FLOAT, "arrow up", rc::ARROWS, 25);
-	rc::registerDefaultAction(rc::STEP_FORWARD,&ahoj2);
-	rc::registerDefaultListener(rc::STEP_FORWARD,rc::RC_INT,"krok zpet",rc::ARROW_DOWN);
+	/*rc::registerDefaultAction(rc::STEP_FORWARD,&ahoj2);
+	rc::registerDefaultListener(rc::STEP_FORWARD,rc::RC_INT,"krok zpet",rc::ARROW_DOWN);*/
 
 	rc::start();
 

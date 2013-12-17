@@ -24,6 +24,7 @@ namespace netsvc{
 		void startReceiver();
 		void startSender();
 		void start();
+		void run();
 		void close();
 		void setQueues(std::queue<xml::XMLMessage> *_messagesToApp, std::queue<xml::XMLMessage> *_messagesFromApp);
 	private:
