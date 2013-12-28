@@ -21,6 +21,10 @@ namespace rc{
 		//std::cout << "RemoteControlAPI destroyed" << std::endl;
 	}
 
+	void RemoteControlAPI::setConfigFile(std::string filename){
+		commandsFromApp.push(Command(SET_CONFIG_FILE, filename));
+	}
+
 	void RemoteControlAPI::registerAction(boost::any f, int primtiveType, std::string name, int preferedModule, int context){
 		commandsFromApp.push(Command(REGISTER_ACTION, f, primtiveType, name, preferedModule, context));
 	}

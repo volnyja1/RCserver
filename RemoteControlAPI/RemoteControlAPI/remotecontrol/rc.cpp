@@ -50,6 +50,10 @@ namespace rc{
 		rcAPI->registerDefaultAction(f, actionType, context);
 	}*/
 
+	void setConfigFile(std::string filename){
+		rcAPI->setConfigFile(filename);
+	}
+
 	void registerFunction(boost::any f, int valueType){
 		std::string name = "action_name_" + defaultActionName++;
 		rcAPI->registerAction(f, valueType, name, rc::DEFAULT_MODULE, rc::DEFAULT_CONTEXT);

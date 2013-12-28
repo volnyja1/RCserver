@@ -64,6 +64,8 @@ namespace rc{
 				std::cout << "> RC: error\n";
 			} else if(commandsFromApp->front().getType()==OTHER){
 				std::cout << "> RC: other message\n";
+			} else if(commandsFromApp->front().getType()==SET_CONFIG_FILE){
+				std::cout << "> RC: set config file - " << commandsFromApp->front().getConfig() << "\n";
 			} else if(commandsFromApp->front().getType()==EXECUTE){
 				std::cout << "> RC: execution results\n";
 				if(app.getState() != AppState::RUNNING){

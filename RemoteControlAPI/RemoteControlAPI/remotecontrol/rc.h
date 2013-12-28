@@ -47,7 +47,11 @@ namespace rc{
 	*/
 	//void registerDefaultAction(int actionType, std::function<int __cdecl(any)> f, int context);
 
-
+	/**
+	*
+	*
+	*/
+	void setConfigFile(std::string filename);
 
 	/**
 	*

@@ -17,6 +17,12 @@ namespace rc{
 		context = _context;
 	}
 
+	Command::Command(CommandType _type, std::string _context){
+		//std::cout << "Command created" << std::endl;
+		type = _type;
+		config = _context;
+	}
+
 	Command::Command(CommandType _type, boost::any _content){
 		//std::cout << "Command created" << std::endl;
 		type = _type;
@@ -103,6 +109,10 @@ namespace rc{
 		valueType = _valueType;
 	}
 
+	std::string Command::getConfig(){
+		return config;
+	}
+
 	int Command::execute(){
 		try{
 			return boost::any_cast<int(*)()>(content)();
@@ -159,6 +169,45 @@ namespace rc{
 		}
 		try{
 			return boost::any_cast<std::function<int __cdecl(std::string)>>(content)(arg);
+		} catch (...){
+
+		}
+	}
+
+	int Command::execute(Scalar arg){
+		try{
+			return boost::any_cast<int(*)(Scalar)>(content)(arg);
+		} catch (...){
+
+		}
+		try{
+			return boost::any_cast<std::function<int __cdecl(Scalar)>>(content)(arg);
+		} catch (...){
+
+		}
+	}
+
+	int Command::execute(Vector arg){
+		try{
+			return boost::any_cast<int(*)(Vector)>(content)(arg);
+		} catch (...){
+
+		}
+		try{
+			return boost::any_cast<std::function<int __cdecl(Vector)>>(content)(arg);
+		} catch (...){
+
+		}
+	}
+
+	int Command::execute(Matrix arg){
+		try{
+			return boost::any_cast<int(*)(Matrix)>(content)(arg);
+		} catch (...){
+
+		}
+		try{
+			return boost::any_cast<std::function<int __cdecl(Matrix)>>(content)(arg);
 		} catch (...){
 
 		}

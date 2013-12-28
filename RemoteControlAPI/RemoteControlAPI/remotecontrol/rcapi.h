@@ -15,6 +15,7 @@ namespace rc{
 		void setContext(int context);
 		void start();
 		void close();
+		void setConfigFile(std::string filename);
 	private:
 		RemoteControlAPI();
 		~RemoteControlAPI();

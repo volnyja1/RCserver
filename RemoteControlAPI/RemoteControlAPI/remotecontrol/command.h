@@ -3,7 +3,10 @@
 
 #include <string>
 #include <functional>
+#include "type.h"
 #include <boost\any.hpp>
+
+#pragma comment( lib, "boost_1_54_0" )
 
 namespace rc{
 
@@ -18,6 +21,7 @@ namespace rc{
 		EXECUTE,
 		ERROR,
 		OTHER,
+		SET_CONFIG_FILE,
 		SIZE_OF_COMMANDS};
 	static const char* CommandTypes[SIZE_OF_COMMANDS] = { "close",
 														  "start", 
@@ -28,7 +32,8 @@ namespace rc{
 														  "change_context",
 														  "execute",
 														  "error",
-														  "other"};
+														  "other",
+														  "set_config_file"};
 
 	class Command{
 	public:
@@ -39,6 +44,8 @@ namespace rc{
 		Command(CommandType _type, boost::any _content);
 		// change context
 		Command(CommandType _type, int _context);
+		// set configuration file
+		Command(CommandType _type, std::string _context);
 		// full default
 		Command(CommandType _type, boost::any _content, int _actionType, int _context);
 		// full action
@@ -54,6 +61,9 @@ namespace rc{
 		int execute(float arg);
 		int execute(double arg);
 		int execute(std::string arg);
+		int execute(Scalar arg);
+		int execute(Vector arg);
+		int execute(Matrix arg);
 		int getActionType();
 		int getPrimitiveType();
 		int getContext();
@@ -63,12 +73,13 @@ namespace rc{
 		std::string getParams();
 		int getValueType();
 		void setValueType(int _valueType);
+		std::string getConfig();
 	private:
 		CommandType type;
 		boost::any content;
 		int actionType, primitiveType, preferedModule, context;
 		int valueType;
-		std::string name, params;
+		std::string name, params, config;
 	};
 }
 
