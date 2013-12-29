@@ -1,6 +1,7 @@
 #include "remotecontrol.h"
 #include <sstream>
 #include <iostream>
+#include <fstream>
 #include "rc_var.h"
 
 namespace rc{
@@ -22,6 +23,43 @@ namespace rc{
 	void RemoteControl::setQueues(std::queue<Command> &_commandsFromRC, std::queue<Command> &_commandsFromApp){
 		commandsFromApp = &_commandsFromApp;
 		commandsFromRC = &_commandsFromRC;
+	}
+
+	void RemoteControl::parseController(int context, rapidxml::xml_node<> *node){
+		int valueType, actionType, module;
+		std::string name;
+		name = "";
+		module = DEFAULT_MODULE;
+		std::istringstream is;
+		if(node->first_attribute("valueType")==NULL || node->first_attribute("actionType")==NULL //||
+			/*node->first_attribute("name")==NULL || node->first_attribute("module")==NULL*/)
+			return;
+
+		name = node->first_attribute("name")->value();
+		is = std::istringstream(node->first_attribute("module")->value());
+		is >> module;
+		is = std::istringstream(node->first_attribute("valueType")->value());
+		is >> valueType;
+		is = std::istringstream(node->first_attribute("actionType")->value());
+		is >> actionType;
+
+		registerToDefault(actionType,valueType,name,module,context);
+		//std::cout << context << " " << name << " " << module << " " << valueType << " " << actionType << "\n";
+	}
+
+	void RemoteControl::parseContext(rapidxml::xml_node<> *node){
+		int context = DEFAULT_CONTEXT;
+		if(node->first_attribute("id")!=NULL){
+			std::istringstream is(node->first_attribute("id")->value());
+			is >> context;
+		}
+		if(node->first_node("controller")!=NULL){
+			rapidxml::xml_node<> *node1 = node->first_node("controller");
+			parseController(context,node1);
+			while(node1 = node1->next_sibling("controller")){
+				parseController(context,node1);
+			}
+		}
 	}
 
 	void RemoteControl::handleAppEvents(){
@@ -66,6 +104,31 @@ namespace rc{
 				std::cout << "> RC: other message\n";
 			} else if(commandsFromApp->front().getType()==SET_CONFIG_FILE){
 				std::cout << "> RC: set config file - " << commandsFromApp->front().getConfig() << "\n";
+				std::string file(commandsFromApp->front().getConfig());
+				std::ifstream myfile(file);
+				if (!myfile)
+				{
+					std::cout << "Cannot open file " << file << "\n";
+				} else {
+					rapidxml::xml_document<> doc;
+					std::vector<char> buffer((std::istreambuf_iterator<char>(myfile)), std::istreambuf_iterator<char>( ));
+					buffer.push_back('\0');
+					try{
+						doc.parse<0>(&buffer[0]);
+						if(doc.first_node("application")!=NULL){
+							rapidxml::xml_node<> *node = doc.first_node();
+							if(node->first_node("context")!=NULL){
+								node = node->first_node("context");
+								parseContext(node);
+								while(node = node->next_sibling("context")){
+									parseContext(node);
+								}
+							}
+						}
+					} catch (...){
+						std::cout << "XML file parsing error\n";
+					}
+				}
 			} else if(commandsFromApp->front().getType()==EXECUTE){
 				std::cout << "> RC: execution results\n";
 				if(app.getState() != AppState::RUNNING){
@@ -83,7 +146,6 @@ namespace rc{
 			xml::MessageType type = m.getMessageTypeEnum();
 			int id = m.getIdInt();
 			if(type == xml::MessageType::ALIVE){
-				// TODO
 				// prijde jako potvrzeni jen od pripojeneho klienta
 				xml::XMLMessage m1;
 				m1.setId(m.getId());

@@ -7,6 +7,7 @@
 #include "application.h"
 #include "clientconfig.h"
 #include "command.h"
+#include "rapidxml\rapidxml.hpp"
 
 namespace rc{
 
@@ -17,6 +18,8 @@ namespace rc{
 		void registerDefaultAction(boost::any _content, int _actionType, int _context);
 		void registerAction(boost::any _content, int _primitiveType, std::string _name, int _preferedModule, int _context);
 		void registerToDefault(int _actionType, int _primitiveType, std::string _name, int _preferedModule, int _context);
+		void parseController(int context, rapidxml::xml_node<> *node);
+		void parseContext(rapidxml::xml_node<> *node);
 		void setQueues(std::queue<Command> &_commandsFromRC, std::queue<Command> &_commandsFromApp);
 		void runQueues();
 		void start();

@@ -5,8 +5,17 @@
 
 namespace rc{
 
+
 	/**
-	*
+   *   Construct a SocketException with a explanatory message.
+   *   @param message explanatory message
+   *   @param incSysMsg true if system message (from strerror(errno))
+   *   should be postfixed to the user provided message
+   */
+  SocketException(const std::string &message, bool inclSysMsg = false) throw();
+
+	/**
+	* Initialize the Remote Control API
 	*
 	*/
 	void init();
@@ -16,6 +25,12 @@ namespace rc{
 	*
 	*/
 	void executeActions();
+
+	/**
+	*
+	*
+	*/
+	void autoExecute();
 
 	/**
 	*
@@ -106,6 +121,12 @@ namespace rc{
 	*
 	*/
 	void registerDefaultListener(int actionType, int valueType, std::string name, int preferedModule);
+
+	/**
+	*
+	*
+	*/
+	void registerDefaultListener(int actionType, int valueType, std::string name, int preferedModule, int context);
 
 	/**
 	*

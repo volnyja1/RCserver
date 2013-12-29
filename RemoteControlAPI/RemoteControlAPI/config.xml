@@ -1,0 +1,23 @@
+<application>
+  <context id="0">
+     <controller actionType="25" valueType="0" name="function 1" module=""></controller>
+     <controller actionType="36" valueType="5" name="function 2" module=""></controller>
+     <controller actionType="72" valueType="0" name="function 3" module=""></controller>
+     <controller actionType="55" valueType="6" name="function 4" module=""></controller>
+     <controller actionType="37" valueType="0" name="function 5" module=""></controller>
+  </context>
+  <context id="1">
+     <controller actionType="25" valueType="0" name="function 1" module=""></controller>
+     <controller actionType="36" valueType="0" name="function 2" module=""></controller>
+     <controller actionType="72" valueType="5" name="function 3" module=""></controller>
+     <controller actionType="55" valueType="0" name="function 4" module=""></controller>
+     <controller actionType="37" valueType="0" name="function 5" module=""></controller>
+  </context>
+  <context id="2">
+     <controller actionType="25" valueType="0" name="function 1" module=""></controller>
+     <controller actionType="36" valueType="3" name="function 2" module=""></controller>
+     <controller actionType="72" valueType="0" name="function 3" module=""></controller>
+     <controller actionType="55" valueType="2" name="function 4" module=""></controller>
+     <controller actionType="37" valueType="0" name="function 5" module=""></controller>
+  </context>
+</application>
