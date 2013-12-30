@@ -100,7 +100,7 @@ namespace rc{
 		rcAPI->setContext(context);
 	}
 	
-	void send(int messageType, int message){
+	void send(int messageType, boost::any message){
 		
 	}
 
