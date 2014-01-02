@@ -11,7 +11,7 @@ namespace rc{
 		//std::cout << "RemoteControl created" << std::endl;
 		netServices.setQueues(messagesFromNetwork,messagesToNetwork);
 		netServices.setProtocol(netsvc::ProtocolType::TCP);
-		netServices.setServer(netsvc::Sock(9876));
+		netServices.setServer(netsvc::Sock(netsvc::DEFAULT_PORT));
 		netServices.start();
 	}
 

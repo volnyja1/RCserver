@@ -10,6 +10,8 @@
 
 namespace netsvc{
 
+	int DEFAULT_PORT = 62000;
+
 	enum ProtocolType{
 		TCP,
 		UDP
